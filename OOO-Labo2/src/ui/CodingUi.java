@@ -48,9 +48,8 @@ public class CodingUi extends Application {
         Label caesarLabel = new Label("Caesar number:");
         TextField caesarNumber = new TextField();
         caesarNumber.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.matches("\\d*")) return;
-            caesarNumber.setText(newValue.replaceAll("[^\\d]", ""));
-            codingContext.setCaesarNumber(caesarNumber.getText());
+            if (newValue.matches("\\d*")) codingContext.setCaesarNumber(caesarNumber.getText());
+            else caesarNumber.setText(newValue.replaceAll("[^\\d]", ""));
         });
         gridPane.add(caesarLabel, 0, 4);
         gridPane.add(caesarNumber, 1, 4);
