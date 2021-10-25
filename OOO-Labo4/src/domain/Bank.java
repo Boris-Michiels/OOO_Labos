@@ -24,6 +24,18 @@ public class Bank implements Subject {
         notifyObservers(BankEvent.REKENING_OPENED);
     }
 
+    public void depositMoney(int rekeningNummer, double amount) {
+        Rekening rekening = getRekeningDb().getRekening(rekeningNummer);
+        rekening.setSaldo(rekening.getSaldo() + amount);
+        notifyObservers(BankEvent.MONEY_DEPOSITED);
+    }
+
+    public void withdrawMoney(int rekeningNummer, double amount) {
+        Rekening rekening = getRekeningDb().getRekening(rekeningNummer);
+        rekening.setSaldo(rekening.getSaldo() - amount);
+        notifyObservers(BankEvent.MONEY_WITHDRAWN);
+    }
+
     public RekeningDb getRekeningDb() {
         return rekeningDb;
     }
@@ -41,7 +53,7 @@ public class Bank implements Subject {
     @Override
     public void notifyObservers(BankEvent e) {
         for (Observer o : observers.get(e)) {
-            o.update();
+            o.update(e);
         }
     }
 }

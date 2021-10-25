@@ -10,18 +10,15 @@ public class Auditor implements Observer {
     }
 
     @Override
-    public void update() {
+    public void update(BankEvent e) {
         display();
     }
 
     private void display() {
         Rekening rekening = bank.getRekeningDb().getLastAddedRekening();
-        String string = "Nieuwe rekening geopend op datum " +
-                rekening.getCreationDate() +
-                " met rekeningnummer " +
-                rekening.getRekeningNummer() +
-                " en saldo " +
-                rekening.getSaldo();
+        String string = "Nieuwe rekening geopend op datum " + rekening.getCreationDate() +
+                " met rekeningnummer " + rekening.getRekeningNummer() +
+                " en saldo " + rekening.getSaldo();
         System.out.println(string);
     }
 }
