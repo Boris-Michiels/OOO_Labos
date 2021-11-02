@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CodingContext {
     private CodingStrategy codingStrategy;
     private String text;
@@ -39,5 +42,13 @@ public class CodingContext {
 
     public void setCodingStrategy(CodingStrategy codingStrategy) {
         this.codingStrategy = codingStrategy;
+    }
+
+    public List<String> getCodingLijst(){
+        List <String> codingLijst = new ArrayList<String>();
+        for (CodingAlgorithm coding : CodingAlgorithm.values()){
+            codingLijst.add(coding.toString());
+        }
+        return codingLijst;
     }
 }

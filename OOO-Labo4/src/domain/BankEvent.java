@@ -7,7 +7,7 @@ public enum BankEvent {
 
     private String eventName;
 
-    private BankEvent(String eventName) {
+    BankEvent(String eventName) {
         this.eventName = eventName;
     }
 

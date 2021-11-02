@@ -1,11 +1,11 @@
 package domain;
 
-public class RandomCyperAdapter implements CodingStrategy {
+public class RandomCypherAdapter implements CodingStrategy {
     private RandomCypher randomCypher;
 
 
-    public RandomCyperAdapter(RandomCypher randomCypher) {
-        this.randomCypher = randomCypher;
+    public RandomCypherAdapter() {
+        this.randomCypher = new RandomCypher();
     }
 
     @Override

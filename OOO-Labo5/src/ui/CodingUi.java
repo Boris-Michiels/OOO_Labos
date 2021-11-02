@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+
 public class CodingUi extends Application {
     CodingContext codingContext;
 
@@ -51,17 +52,15 @@ public class CodingUi extends Application {
         gridPane.add(caesarLabel, 0, 4);
         gridPane.add(caesarNumber, 1, 4);
         Label strategyLabel = new Label("Strategy to encrypt/decrypt:");
-        ComboBox<CodingStrategy> comboBox = new ComboBox<>();
+        ComboBox<CodingAlgorithm> comboBox = new ComboBox<>();
         comboBox.getItems().addAll(
-                new CaesarCoding(),
-                new MirrorCoding(),
-                new RandomCyperAdapter(new RandomCypher())
+                CodingAlgorithm.values()
         );
         comboBox.getSelectionModel().selectFirst();
-        codingContext.setCodingStrategy(comboBox.getValue());
+        codingContext.setCodingStrategy(CodingStrategyFactory.createCodingStrategy(comboBox.getValue().name()));
         caesarNumber.setText(String.valueOf(codingContext.getCaesarNumber()));
         comboBox.setOnAction(e -> {
-            codingContext.setCodingStrategy(comboBox.getValue());
+            codingContext.setCodingStrategy(CodingStrategyFactory.createCodingStrategy(comboBox.getValue().name()));
             if (comboBox.getValue().toString().equals("Caesar")) {
                 caesarNumber.setText(String.valueOf(codingContext.getCaesarNumber()));
                 caesarLabel.setVisible(true);
