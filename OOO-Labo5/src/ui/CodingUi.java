@@ -1,6 +1,7 @@
 package ui;
 
-import domain.*;
+import domain.CodingAlgorithm;
+import domain.CodingFacade;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,18 +13,10 @@ import javafx.stage.Stage;
 
 
 public class CodingUi extends Application {
-    CodingContext codingContext;
+    CodingFacade codingFacade;
 
     public CodingUi() {
-        this.codingContext = new CodingContext();
-    }
-
-    public CodingContext getCodingContext() {
-        return codingContext;
-    }
-
-    public void setCodingContext(CodingContext codingContext) {
-        this.codingContext = codingContext;
+        this.codingFacade = new CodingFacade();
     }
 
     @Override
@@ -46,7 +39,7 @@ public class CodingUi extends Application {
         Label caesarLabel = new Label("Caesar number:");
         TextField caesarNumber = new TextField();
         caesarNumber.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.matches("\\d*")) codingContext.setCaesarNumber(caesarNumber.getText());
+            if (newValue.matches("\\d*")) codingFacade.setCaesarNumber(caesarNumber.getText());
             else caesarNumber.setText(newValue.replaceAll("[^\\d]", ""));
         });
         gridPane.add(caesarLabel, 0, 4);
@@ -57,12 +50,12 @@ public class CodingUi extends Application {
                 CodingAlgorithm.values()
         );
         comboBox.getSelectionModel().selectFirst();
-        codingContext.setCodingStrategy(CodingStrategyFactory.createCodingStrategy(comboBox.getValue().name()));
-        caesarNumber.setText(String.valueOf(codingContext.getCaesarNumber()));
+        codingFacade.setCodingStrategy(comboBox.getValue().name());
+        caesarNumber.setText(String.valueOf(codingFacade.getCaesarNumber()));
         comboBox.setOnAction(e -> {
-            codingContext.setCodingStrategy(CodingStrategyFactory.createCodingStrategy(comboBox.getValue().name()));
+            codingFacade.setCodingStrategy(comboBox.getValue().name());
             if (comboBox.getValue().toString().equals("Caesar")) {
-                caesarNumber.setText(String.valueOf(codingContext.getCaesarNumber()));
+                caesarNumber.setText(String.valueOf(codingFacade.getCaesarNumber()));
                 caesarLabel.setVisible(true);
                 caesarNumber.setVisible(true);
             } else {
@@ -76,12 +69,12 @@ public class CodingUi extends Application {
         Button encode = new Button("Encode");
         Button decode = new Button("Decode");
         encode.setOnAction(e -> {
-            getCodingContext().setText(textInput.getText());
-            textOutput.setText(getCodingContext().encode());
+            codingFacade.setText(textInput.getText());
+            textOutput.setText(codingFacade.encode());
         });
         decode.setOnAction(e -> {
-            getCodingContext().setText(textInput.getText());
-            textOutput.setText(getCodingContext().decode());
+            codingFacade.setText(textInput.getText());
+            textOutput.setText(codingFacade.decode());
         });
         gridPane.add(encode, 1, 3);
         gridPane.add(decode, 2, 3);
