@@ -1,4 +1,4 @@
-package domain;
+package model;
 
 public interface CodingStrategy {
     String encode(String text);

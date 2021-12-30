@@ -1,4 +1,7 @@
-package domain;
+package model.codingStrategy;
+
+import domain.RandomCypher;
+import model.CodingStrategy;
 
 public class RandomCypherAdapter implements CodingStrategy {
     private RandomCypher randomCypher;

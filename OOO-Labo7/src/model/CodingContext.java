@@ -1,4 +1,6 @@
-package domain;
+package model;
+
+import model.codingStrategy.CaesarCoding;
 
 import java.util.ArrayList;
 import java.util.List;

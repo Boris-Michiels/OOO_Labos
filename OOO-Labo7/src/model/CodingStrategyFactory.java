@@ -1,4 +1,4 @@
-package domain;
+package model;
 
 public class CodingStrategyFactory {
     public static CodingStrategy createCodingStrategy(String name, Object... args) {

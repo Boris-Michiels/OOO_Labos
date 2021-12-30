@@ -1,4 +1,6 @@
-package domain;
+package model.codingStrategy;
+
+import model.CodingStrategy;
 
 public class MirrorCoding implements CodingStrategy {
     @Override

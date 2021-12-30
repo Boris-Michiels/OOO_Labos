@@ -1,4 +1,6 @@
-package domain;
+package model.codingStrategy;
+
+import model.CodingStrategy;
 
 public class CaesarCoding implements CodingStrategy {
     private int caesarNumber = 1;

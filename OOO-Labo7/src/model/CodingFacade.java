@@ -1,12 +1,14 @@
-package domain;
+package model;
 
-import domain.*;
-import ui.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CodingFacade {
+public class CodingFacade implements CodingSubject {
     CodingContext codingContext;
+    List<CodingObserver> codingObserverList;
 
     public CodingFacade() {
+        codingObserverList = new ArrayList<>();
         getCodingContext();
     }
 
@@ -41,5 +43,22 @@ public class CodingFacade {
 
     public String decode() {
         return codingContext.decode();
+    }
+
+    @Override
+    public void addObserver(CodingObserver o) {
+        codingObserverList.add(o);
+    }
+
+    @Override
+    public void removeObserver(CodingObserver o) {
+        codingObserverList.remove(o);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (CodingObserver o : codingObserverList) {
+            o.update();
+        }
     }
 }

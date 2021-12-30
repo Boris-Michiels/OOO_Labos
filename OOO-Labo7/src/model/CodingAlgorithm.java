@@ -1,9 +1,9 @@
-package domain;
+package model;
 
 public enum CodingAlgorithm {
-    CAESAR ("Caesar", "domain.CaesarCoding"),
-    MIRROR ("Mirror", "domain.MirrorCoding"),
-    RANDOM_CYPHER ("Random Cypher", "domain.RandomCypherAdapter");
+    CAESAR ("Caesar", "model.codingStrategy.CaesarCoding"),
+    MIRROR ("Mirror", "model.codingStrategy.MirrorCoding"),
+    RANDOM_CYPHER ("Random Cypher", "model.codingStrategy.RandomCypherAdapter");
 
     private final String naam, className;
 

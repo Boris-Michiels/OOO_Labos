@@ -1,8 +1,7 @@
-package ui;
+package view;
 
-import domain.CodingAlgorithm;
-import domain.CodingFacade;
-import javafx.application.Application;
+import model.CodingAlgorithm;
+import model.CodingFacade;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -12,15 +11,15 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
-public class CodingUi extends Application {
-    CodingFacade codingFacade;
+public class CodingView {
+    private CodingFacade codingFacade;
+    private Stage stage;
 
-    public CodingUi() {
+    public CodingView() {
         this.codingFacade = new CodingFacade();
-    }
+        this.stage = new Stage();
 
-    @Override
-    public void start(Stage stage) {
+
         stage.setTitle("Coding Application");
 
         GridPane gridPane = new GridPane();
